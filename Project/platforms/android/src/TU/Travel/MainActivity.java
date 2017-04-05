@@ -17,7 +17,7 @@
        under the License.
  */
 
-package TU.Travel;
+package tu.travel;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

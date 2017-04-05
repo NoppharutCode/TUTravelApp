@@ -8,7 +8,10 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "TU.Travel"
+            "PACKAGE_NAME": "tu.travel"
+        },
+        "cordova-plugin-googlemaps": {
+            "PACKAGE_NAME": "tu.travel"
         }
     },
     "dependent_plugins": {}
