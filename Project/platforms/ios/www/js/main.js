@@ -1,49 +1,26 @@
 var map;
 document.addEventListener("deviceready", function() {
-  var div = document.getElementById("map_canvas");
+  // Define a div tag with id="map_canvas"
+  var mapDiv = document.getElementById("map_canvas");
 
-  // Initialize the map view
-  map = plugin.google.maps.Map.getMap(div);
+  console.log(mapDiv);
+  // Initialize the map plugin
 
-  // Wait until the map is ready status.
-  map.addEventListener(plugin.google.maps.event.MAP_READY, onMapReady);
-}, false);
+  map = plugin.google.maps.Map.getMap(mapDiv);
+ 
 
-function onMapReady() {
-  var button = document.getElementById("button");
-  button.addEventListener("click", onBtnClicked);
-}
 
-function onBtnClicked() {
+  // You have to wait the MAP_READY event.
+  map.on(plugin.google.maps.event.MAP_READY, onMapInit);
 
-  // Move to the position with animation
-  map.animateCamera({
-    target: {lat: 37.422359, lng: -122.084344},
-    zoom: 17,
-    tilt: 60,
-    bearing: 140,
-    duration: 5000
-  }, function() {
+});
 
-    // Add a maker
-    map.addMarker({
-      position: {lat: 37.422359, lng: -122.084344},
-      title: "Welecome to \n" +
-             "Cordova GoogleMaps plugin for iOS and Android",
-      snippet: "This plugin is awesome!",
-      animation: plugin.google.maps.Animation.BOUNCE
-    }, function(marker) {
+function onMapInit(map) {
 
-      // Show the info window
-      marker.showInfoWindow();
 
-      // Catch the click event
-      marker.on(plugin.google.maps.event.INFO_CLICK, function() {
+	
+  alert("My map");
+  
 
-        // To do something...
-        alert("Hello world!");
 
-      });
-    });
-  });
 }

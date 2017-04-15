@@ -1,0 +1,12 @@
+<ion-header>
+    <ion-searchbar [(ngModel)]="autocompletePlace.name"  (ionInput)="getPlaceFromSearch($event)" type="text" placeholder="จุดหมายปลายทาง" ></ion-searchbar >
+	<ion-list  *ngIf="autocompletePlaces.length != 0">
+		<ion-item *ngFor="let item of autocompletePlaces" tappable (click)="choosePlace(item)">
+      		{{ item.name }}
+    	</ion-item>
+	</ion-list>
+
+</ion-header>
+<ion-content>
+	<div #map id="map"></div>
+</ion-content>

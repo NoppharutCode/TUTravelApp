@@ -17,14 +17,10 @@ document.addEventListener("deviceready", function() {
 
 function onMapInit(map) {
 
-	  map.animateCamera({
 
-  'tilt': 60,
-  'zoom': 20,
-  'bearing': 140
-});
-	alert("My map");
+	
+  alert("My map");
+  
+
 
 }
-
-

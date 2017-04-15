@@ -17,58 +17,12 @@
         <title>Main</title>
     </head>
     <body>
-
-
-<!-- Simple header with fixed tabs. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
-            mdl-layout--fixed-tabs">
-
-  <header class="mdl-layout__header colorStyle1">
-    <div class="mdl-layout__header-row"  style="padding: 0 16px 0 16px">
-      <!-- Title -->
-      <span class="mdl-layout-title" >TUTravel</span>
-    </div>
-    <!-- Tabs -->
-    <div class="mdl-layout__tab-bar mdl-js-ripple-effect colorStyle1">
-      <a href="#fixed-tab-1" class="mdl-layout__tab is-active"><img src="img/ic_map_white_24px.svg" ></a>
-      <a href="#fixed-tab-2" class="mdl-layout__tab"><img src="img/ic_search_white_24px.svg" ></a>
-      <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
-      <a href="#fixed-tab-4" class="mdl-layout__tab">Tab 4</a>
-    </div>
-  </header>
-
-  <main class="mdl-layout__content">
-    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-      <div class="page-content">
-        <div id="map_canvas"></div>
+      <div id="map_canvas">
+        <div id="searchBox">
+          <input type="text" id="query" size="30" />            
+        </div>
       </div>
-    </section>
-    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
-      <div class="page-content">
-    
-      <div class="mdl-select mdl-js-select mdl-select--floating-label">
-        <select class="mdl-select__input" id="professsion" name="professsion">
-          <option value=""></option>
-          <option value="option1">option 1</option>
-          <option value="option2">option 2</option>
-          <option value="option3">option 3</option>
-          <option value="option4">option 4</option>
-          <option value="option5">option 5</option>
-        </select>
-      </div>
-
-      </div>
-    </section>
-    <section class="mdl-layout__tab-panel" id="fixed-tab-3">
-      <div class="page-content">3</div>
-    </section>
-    <section class="mdl-layout__tab-panel" id="fixed-tab-4">
-      <div class="page-content">4</div>
-    </section>
-  </main>
-
-</div>
-
+      
 
 
 

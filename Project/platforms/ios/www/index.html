@@ -5,55 +5,31 @@
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta-data
+          android:name="tu.trave.API_KEY"
+          android:value="AIzaSyAQOAyKkThpIwqYZtUWmE-VdkrQ2NdFUHI"/>
+          
 
         <link rel="stylesheet" href="mdl/material.min.css">
-         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css">
+
+
+        <title>Main</title>
+    </head>
+    <body>
+      <div id="map_canvas">
+        <div id="searchBox">
+          <input type="text" id="query" size="30" />            
+        </div>
+      </div>
+      
+
 
 
         <script src="mdl/material.min.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/main.js"></script>
-        <title>Main</title>
-    </head>
-    <body>
-
-
-<!-- Simple header with fixed tabs. -->
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
-            mdl-layout--fixed-tabs">
-
-  <header class="mdl-layout__header colorStyle1">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title" >TUTravel</span>
-    </div>
-    <!-- Tabs -->
-    <div class="mdl-layout__tab-bar mdl-js-ripple-effect colorStyle1">
-      <a href="#fixed-tab-1" class="mdl-layout__tab is-active"><img src="img/ic_map_white_24px.svg" ></a>
-      <a href="#fixed-tab-2" class="mdl-layout__tab"><img src="img/ic_search_white_24px.svg" ></a>
-      <a href="#fixed-tab-3" class="mdl-layout__tab">Tab 3</a>
-      <a href="#fixed-tab-4" class="mdl-layout__tab">Tab 4</a>
-    </div>
-  </header>
-
-  <main class="mdl-layout__content">
-    <section class="mdl-layout__tab-panel is-active" id="fixed-tab-1">
-      <div class="page-content">
-        <div id="map_canvas"></div>
-      </div>
-    </section>
-    <section class="mdl-layout__tab-panel" id="fixed-tab-2">
-      <div class="page-content"></div>
-    </section>
-    <section class="mdl-layout__tab-panel" id="fixed-tab-3">
-      <div class="page-content">3</div>
-    </section>
-    <section class="mdl-layout__tab-panel" id="fixed-tab-4">
-      <div class="page-content">4</div>
-    </section>
-  </main>
-
-</div>
-        
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBBASIeFbNWxgMwaLBi2EVPfX73PMNcaRw"
+        async defer></script>
     </body>
 </html>
