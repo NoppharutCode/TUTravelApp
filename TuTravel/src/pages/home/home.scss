@@ -1,7 +1,3 @@
-.searchbar-md {
-    padding: 8px;
-    /* background: inherit; */
-}
 
 
 page-home {
@@ -12,4 +8,10 @@ page-home {
 		width: 100%;
 
 	}
+	ion-scroll {
+		white-space: nowarp;
+		height:56px;
+	}
+
+	
 }
