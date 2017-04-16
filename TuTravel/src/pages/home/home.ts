@@ -1,5 +1,6 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { NavController , ModalController, ViewController, LoadingController } from 'ionic-angular';
+import { Geolocation } from '@ionic-native/geolocation';
 
 declare var google:any;
 
@@ -17,6 +18,7 @@ export class HomePage {
   autocompletePlaces: any;
   map: any;
   marker: any;
+  infoWindow: any;
 
   pathNgv1A: any;
   pathNgv1B: any;
@@ -51,7 +53,7 @@ export class HomePage {
   borderColor4: string;
 
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController , public geolocation: Geolocation) {
 
     this.color1A = '#6200EA';
     this.background1A = 'white';
@@ -98,10 +100,372 @@ export class HomePage {
         positionPlace: { lat : 14.073313 , lng : 100.601182 },
         ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
         lable : "ป้ายโรงอาหารกรีน" 
-      }
+      },
+      { 
+        name : "บร.1" , 
+        positionPlace: { lat : 14.072609 , lng : 100.602118 },
+        ngv : [  "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "ป้ายตรงข้ามโรงอาหารกรีน // ป้ายเซเว่น บร.1" 
+      },
+      { 
+        name : "หอสมุดป๋วย " , 
+        positionPlace: { lat : 14.071172 , lng : 100.602166 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "ป้ายหอสมุดป๋วย" 
+      },
+      { 
+        name : "สำนักงานอธิการบดี" , 
+        positionPlace: { lat : 14.074138 , lng : 100.602209 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "ป้ายตรงข้ามโรงอาหารกรีน" 
+      },
+      { 
+        name : "สำนักงานทะเบียน" , 
+        positionPlace: { lat : 14.070714 , lng : 100.602338 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "ป้ายหอสมุดป๋วย" 
+      },
+      { 
+        name : "หอพระ" , 
+        positionPlace: { lat : 14.071115 , lng : 100.600863 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "ป้ายหอสมุดป๋วย" 
+      },                    
+      { 
+        name : "อาคารคณะบดี" , 
+        positionPlace: { lat : 14.073998 , lng : 100.602075 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "ป้ายตรงข้ามโรงอาหารกรีน" 
+      },
+      { 
+        name : "ศูนย์หนังสือ" , 
+        positionPlace: { lat : 14.072718 , lng : 100.60208 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "ป้ายตรงข้ามโรงอาหารกรีน" 
+      },
+      { 
+        name : "ยิม7" , 
+        positionPlace: { lat : 14.069676 , lng : 100.600769 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายอาคาร SC" 
+      },
+      { 
+        name : "ตึกSC" , 
+        positionPlace: { lat : 14.069497 , lng : 100.603091 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายอาคาร SC" 
+      },
+      { 
+        name : "โรงละครวารสาร " , 
+        positionPlace: { lat : 14.068014 , lng : 100.605288 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายวารสารศาสตร์ // จุดจอดหน้าโรงละคร" 
+      },
+      { 
+        name : "สระว่ายน้ำ" , 
+        positionPlace: { lat : 14.067101 , lng : 100.602019 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายอาคารยิมเนเซียม 4,5,6" 
+      },
+      { 
+        name : "สถาบันภาษา " , 
+        positionPlace: { lat : 14.068801 , lng : 100.602155 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายอาคาร SC" 
+      },
+      { 
+        name : "คณะสังคมวิทยาและมนุษย์วิทยา " , 
+        positionPlace: { lat : 14.068762 , lng : 100.602434 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายอาคาร SC" 
+      },
+      { 
+        name : "คณะศิลปศาสตร์" , 
+        positionPlace: { lat : 14.069092 , lng : 100.602134 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายอาคาร SC" 
+      },
+      { 
+        name : "คณะนิติศาสตร์" , 
+        positionPlace: { lat : 14.068188 , lng : 100.603095 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายนิติศาสตร์ // ป้ายวารสารศาสตร์" 
+      },
+      { 
+        name : "คณะรัฐศาสตร์" , 
+        positionPlace: { lat : 14.067992 , lng : 100.602796 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายนิติศาสตร์ // ป้ายวารสารศาสตร์" 
+      },
+      { 
+        name : "คณะสังคมสงเคราะห์ " , 
+        positionPlace: { lat : 14.0684 , lng : 100.602736 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายนิติศาสตร์ // ป้ายวารสารศาสตร์" 
+      },
+      { 
+        name : "คณะพาณิชยศาสตร์และการบัญชี" , 
+        positionPlace: { lat : 14.068176 , lng : 100.603647 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายนิติศาสตร์ // ป้ายวารสารศาสตร์" 
+      },
+      { 
+        name : "คณะเศรษฐศาสตร์" , 
+        positionPlace: { lat : 14.068333 , lng : 100.603979 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายนิติศาสตร์ // ป้ายวารสารศาสตร์" 
+      },
+      { 
+        name : "คณะวารสารศาสตร์และสื่อสารมวลชน" , 
+        positionPlace: { lat : 14.068806 , lng : 100.604528 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายวารสารศาสตร์ // จุดจอดโรงอาหาร SC-JC" 
+      },
+      { 
+        name : "คณะศิลปกรรมศาสตร์" , 
+        positionPlace: { lat : 14.068741 , lng : 100.60472 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายวารสารศาสตร์ // จุดจอดโรงอาหาร SC-JC" 
+      },
+      { 
+        name : "ยิม4,5,6" , 
+        positionPlace: { lat : 14.067218 , lng : 100.604355 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "ป้ายอาคารยิมเนเซียม 4,5,6 // ป้ายนิติศาสตร์" 
+      },
+      { 
+        name : "อินเตอร์โซน" , 
+        positionPlace: { lat : 14.076787 , lng : 100.598202 },
+        ngv : [ "1A" , "1B" , "2" ],
+        lable : "ป้ายอินเตอร์โซน" 
+      },
+      { 
+        name : "วงเวียนหอพักA" , 
+        positionPlace: { lat : 14.077765 , lng : 100.595058 },
+        ngv : [ "1A" , "1B" , "2" ],
+        lable : "ป้ายหอพักโซน A" 
+      },
+      { 
+        name : "สวทช." , 
+        positionPlace: { lat : 14.076823 , lng : 100.601634 },
+        ngv : [ "1A" , "1B" , "2" ],
+        lable : "ป้ายรถตู้หมอชิต" 
+      },
+      { 
+        name : "ทิวสนโดม" , 
+        positionPlace: { lat : 14.076225 , lng : 100.595418 },
+        ngv : [ "1A" , "1B" , "2" ],
+        lable : "จุดจอดหน้าทิวสนโดม" 
+      }, 
+      { 
+        name : "โรงเรียนประถมศึกษาธรรมศาสตร์ " , 
+        positionPlace: { lat : 14.076758 , lng : 100.599395 },
+        ngv : [ "1A" , "1B" , "2" ],
+        lable : "ป้ายหน้าโรงเรียนประถม" 
+      },
+      { 
+        name : "ตึก14ชั้น" , 
+        positionPlace: { lat : 14.070886 , lng : 100.59784 },
+        ngv : [ "1A" , "1B" ],
+        lable : "ป้ายอาคาร D-luxx" 
+      },
+      { 
+        name : "หอพักโซนC  (c1-c11)" , 
+        positionPlace: { lat : 14.075892 , lng : 100.597408 },
+        ngv : [ "1A" , "1B" ],
+        lable : "ป้ายหอพักโซน C" 
+      },
+      { 
+        name : "หอพักโซนA" , 
+        positionPlace: { lat : 14.078285 , lng : 100.596477 },
+        ngv : [ "1A" , "1B" ],
+        lable : "จุดจอดหอพักโซน A" 
+      },
+      { 
+        name : "หอพักโซนB" , 
+        positionPlace: { lat : 14.077835 , lng : 100.597164 },
+        ngv : [ "1A" , "1B" ],
+        lable : "ป้ายหอพักโซน B" 
+      },  
+      { 
+        name : "โรงอาหาร SC1 " , 
+        positionPlace: { lat : 14.069215 , lng : 100.604714 },
+        ngv : [ "1A" , "1B" ],
+        lable : "จุดจอดโรงอาหาร SC-JC" 
+      },
+      { 
+        name : "โรงอาหาร SC2 " , 
+        positionPlace: { lat : 14.069632 , lng : 100.604596 },
+        ngv : [ "1A" , "1B" ],
+        lable : "จุดจอดโรงอาหาร SC-JC" 
+      },
+      { 
+        name : "SIIT" , 
+        positionPlace: { lat : 14.068914 , lng : 100.607383 },
+        ngv : [ "1A" , "1B" , "4" ],
+        lable : "ป้ายหน้าคณะ SIIT" 
+      },
+      { 
+        name : "คณะวิศวกรรมศาสตร์" , 
+        positionPlace: { lat : 14.068893 , lng : 100.6059 },
+        ngv : [ "1A" , "1B" , "4" ],
+        lable : "ป้ายคณะวิศวะกรรมศาสตร์" 
+      },
+      { 
+        name : "คณะแพทยศาสตร์" , 
+        positionPlace: { lat : 14.072593 , lng : 100.613791 },
+        ngv : [ "2" ],
+        lable : "ป้ายคณะพยาบาลศาสตร์" 
+      },
+      { 
+        name : "คณะเภสัชศาสตร์ " , 
+        positionPlace: { lat : 14.073873 , lng : 100.607874 },
+        ngv : [ "2" ],
+        lable : "ป้ายคณะพยาบาลศาสตร์" 
+      },
+      { 
+        name : "คณะทันตแพทย์" , 
+        positionPlace: { lat : 14.072655 , lng : 100.612552 },
+        ngv : [ "2" ],
+        lable : "ป้ายคณะพยาบาลศาสตร์" 
+      },
+      { 
+        name : "คณะสหเวชศาสตร์" , 
+        positionPlace: { lat : 14.072744 , lng : 100.612568 },
+        ngv : [ "2" ],
+        lable : "ป้ายคณะพยาบาลศาสตร์" 
+      },
+      { 
+        name : "คณะพยาบาลศาสตร์" , 
+        positionPlace: { lat : 14.072731 , lng : 100.612751 },
+        ngv : [ "2" ],
+        lable : "ป้ายคณะพยาบาลศาสตร์"  
+      },
+      { 
+        name : "คณะสาธารณสุขศาสตร์" , 
+        positionPlace: { lat : 14.072785 , lng : 100.612509 },
+        ngv : [ "2" ],
+        lable : "ป้ายคณะพยาบาลศาสตร์" 
+      },
+      { 
+        name : "สหกรณ์ออมทรัพย์" , 
+        positionPlace: { lat : 14.07289 , lng : 100.604355 },
+        ngv : [ "2" ],
+        lable : "ป้ายสหกรณ์ออมทรัพย์" 
+      },
+      { 
+        name : "คณะวิทยาศาสตร์" , 
+        positionPlace: { lat : 14.073634 , lng : 100.607901 },
+        ngv : [ "2" ],
+        lable : "ป้าย บร.3 // ป้าย บร.4" 
+      },
+      { 
+        name : "โรงละครธรรมศาสตร์" , 
+        positionPlace: { lat : 14.071217 , lng : 100.608582 },
+        ngv : [ "2" ],
+        lable : "ป้ายตรงข้าม บร.4" 
+      },
+      { 
+        name : "ศูนย์การเรียนรู้ " , 
+        positionPlace: { lat : 14.071737 , lng : 100.603133 },
+        ngv : [ "2" ],
+        lable : "จุดจอดศูนย์การเรียนรู้" 
+      },
+      { 
+        name : "อาคารปิยชาติ " , 
+        positionPlace: { lat : 14.072655 , lng : 100.612552 },
+        ngv : [ "2" ],
+        lable : "ป้ายคณะพยาบาลศาสตร์" 
+      },
+      { 
+        name : "โรงพยาบาลธรรมศาสตร์เฉลิมพระเกียรติ" ,
+        positionPlace: { lat : 14.074175 , lng : 100.614746 },
+        ngv : [ "2" ],
+        lable : "ป้ายโรงพยาบาลธรรมศาสตร์" 
+      },
+      { 
+        name : "หอพักแพทย์และพยาบาล" , 
+        positionPlace: { lat : 14.073535 , lng : 100.610942 },
+        ngv : [ "2" ],
+        lable : "ป้ายคณะพยาบาลศาสตร์" 
+      },
+      { 
+        name : "บร.2" , 
+        positionPlace: { lat : 14.0736 , lng : 100.606393 },
+        ngv : [ "2" ],
+        lable : "ป้ายบร.3" 
+      },
+      { 
+        name : "บร.3" , 
+        positionPlace: { lat : 14.072629 , lng : 100.606323 },
+        ngv : [ "2" ],
+        lable : "ป้ายบร.3" 
+      },
+      { 
+        name : "บร.4" , 
+        positionPlace: { lat : 14.072567 , lng : 100.608088 },
+        ngv : [ "2" ],
+        lable : "ป้ายบร.4" 
+      },
+      { 
+        name : "บร.5" , 
+        positionPlace: { lat : 14.073634 , lng : 100.607944 },
+        ngv : [ "2" ],
+        lable : "ป้าย บร.4" 
+      },
+      { 
+        name : "TU dome" , 
+        positionPlace: { lat : 14.065037 , lng : 100.600047 },
+        ngv : [ "3" ],
+        lable : "ป้ายหอพัก TU Dome" 
+      },
+      { 
+        name : "ทียูโดม" , 
+        positionPlace: { lat : 14.065037 , lng : 100.600047 },
+        ngv : [ "3" ],
+        lable : "ป้ายหอพัก TU Dome" 
+      },
+      { 
+        name : "เชียงราก1" , 
+        positionPlace: { lat : 14.066057 , lng : 100.605079 },
+        ngv : [ "3" ],
+        lable : "ป้ายเชียงราก" 
+      },
+      { 
+        name : "สนามกีฬาธรรมศาสตร์" , 
+        positionPlace: { lat : 14.067983 , lng : 100.59906 },
+        ngv : [ "3" ],
+        lable : "ป้ายตรงข้ามอาคาร SC" 
+      },
+      { 
+        name : "ศูนย์ประชุมธรรมศาสตร์" , 
+        positionPlace: { lat : 14.068243 , lng : 100.614649 },
+        ngv : [ "4" ],
+        lable : "จุดจอดหน้ายิมเนเซียม 1" 
+      },
+      { 
+        name : "โรงพิมพ์ธรรมศาสตร์" , 
+        positionPlace: { lat : 14.067036 , lng : 100.609534 },
+        ngv : [ "4" ],
+        lable : "ป้ายโรงพิมพ์ธรรมศาสตร์" 
+      },
+      { 
+        name : "คณะสถาปัตย์และการผังเมือง" , 
+        positionPlace: { lat : 14.068264 , lng : 100.608743 },
+        ngv : [ "4" ],
+        lable : "ป้ายคณะสถาปัตย์และการผังเมือง" 
+      }     
     ];
 
 
+/*
+      { 
+        name : "" , 
+        positionPlace: { lat :  , lng :  },
+        ngv : [ "4" ],
+        lable : "" 
+      }
+*/
 
     this.autocompletePlaces = [];
     this.autocompletePlace = {
@@ -520,6 +884,33 @@ export class HomePage {
       strokeColor: '#263238',
       strokeOpacity: 1.0,
       strokeWeight: 2
+    });
+
+
+    this.geolocation.getCurrentPosition().then((position) => {
+ 
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+ 
+      this.infoWindow = new google.maps.InfoWindow();
+      this.infoWindow.setPosition(latLng);
+      this.infoWindow.setContent('คุณอยู่ตรงนี้');
+      this.infoWindow.open(this.map);
+      this.map.setCenter(latLng);
+
+    let myloc = new google.maps.Marker({
+    clickable: false,
+    icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
+                                                    new google.maps.Size(22,22),
+                                                    new google.maps.Point(0,18),
+                                                    new google.maps.Point(11,11)),
+    shadow: null,
+    zIndex: 999,
+    map: this.map
+    });
+
+  myloc.setPosition(latLng);
+    }, (err) => {
+      console.log(err);
     });
 
 
