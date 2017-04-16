@@ -13,15 +13,14 @@
 </ion-content>
 
 <ion-footer>
-<ion-toolbar style="height:70px">
-<ion-scroll scrollX="true" fab-center>
-  <ion-row style="width: 344px ;margin-right:auto;margin-left:auto;"  nowrap>
-    <button style="background:white;color:#6200EA;border-color:#6200EA;border-width: 2px;border-style: solid;" margin-right ion-fab (click)="ngvButtonEvent('1A')" >1A</button>
+<ion-scroll scrollX="true" style="height:72px" fab-center>
+  <ion-row style="width: 376px ;margin-right:auto;margin-left:auto;margin-bottom:8px;margin-top:8px;"  nowrap>
+    <button style="background:white;color:#6200EA;border-color:#6200EA;border-width: 2px;border-style: solid;" margin-right margin-left ion-fab (click)="ngvButtonEvent('1A')">1A</button>
     <button style="background:white;color:#0091EA;border-color:#0091EA;border-width: 2px;border-style: solid;" margin-right ion-fab (click)="ngvButtonEvent('1B')" >1B</button>
-    <button style="background:white;color:#00C853;border-color:#00C853;border-width: 2px;border-style: solid;" margin-right ion-fab (click)="ngvButtonEvent('2')" >2</button>
+    <button  style="background:white;color:#00C853;border-color:#00C853;border-width: 2px;border-style: solid;" margin-right ion-fab (click)="ngvButtonEvent('2')" >2</button>
     <button style="background:white;color:#FF6D00;border-color:#FF6D00;border-width: 2px;border-style: solid;" margin-right ion-fab (click)="ngvButtonEvent('3')" >3</button>
-    <button style="background:white;color:#C6FF00;border-color:#C6FF00;border-width: 2px;border-style: solid;"  ion-fab (click)="ngvButtonEvent('4')" >4</button>
+    <button style="background:white;color:#C6FF00;border-color:#C6FF00;border-width: 2px;border-style: solid;"  ion-fab margin-right (click)="ngvButtonEvent('4')" >4</button>
   </ion-row >
  </ion-scroll> 
-</ion-toolbar>
+
 </ion-footer>

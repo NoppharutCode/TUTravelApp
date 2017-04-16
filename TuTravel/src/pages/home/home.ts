@@ -43,7 +43,6 @@ export class HomePage {
   */
 
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
-
     this.places = [
       { 
         name : "อาคารโดมบริหาร" , 
@@ -71,7 +70,7 @@ export class HomePage {
       }
     ];
 
- 
+
 
     this.autocompletePlaces = [];
     this.autocompletePlace = {
@@ -88,6 +87,7 @@ export class HomePage {
     });
     loader.present().then(() => {
       this.initMap();
+      
       loader.dismiss();
     });
   }
@@ -554,6 +554,7 @@ export class HomePage {
       if(this.drawPathNgv1A.getMap()){
         this.drawPathNgv1A.setMap(null);
       }else{
+
         this.drawPathNgv1A.setMap(this.map);
       }
 
