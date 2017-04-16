@@ -1,6 +1,6 @@
 
 <ion-header color="primary">
-    <ion-searchbar [(ngModel)]="autocompletePlace.name"  (ionInput)="getPlaceFromSearch($event)" type="text" placeholder="จุดหมายปลายทาง" ></ion-searchbar >
+    <ion-searchbar [(ngModel)]="autocompletePlace.name"  (ionClear)="clear()" (ionInput)="getPlaceFromSearch($event)" type="text" placeholder="จุดหมายปลายทาง" ></ion-searchbar >
     <ion-list  *ngIf="autocompletePlaces.length != 0">
     <ion-item *ngFor="let item of autocompletePlaces" tappable (click)="choosePlace(item)">
           {{ item.name }}
@@ -10,16 +10,26 @@
 
 <ion-content>
 	<div #map id="map"></div>
+  <ion-fab right bottom>
+    <button ion-fab (click)="clearAll()" ><ion-icon  name="md-refresh"> </ion-icon></button>
+  </ion-fab>
 </ion-content>
 
 <ion-footer>
 <ion-scroll scrollX="true" style="height:72px" fab-center>
-  <ion-row style="width: 376px ;margin-right:auto;margin-left:auto;margin-bottom:8px;margin-top:8px;"  nowrap>
-    <button style="background:white;color:#6200EA;border-color:#6200EA;border-width: 2px;border-style: solid;" margin-right margin-left ion-fab (click)="ngvButtonEvent('1A')">1A</button>
-    <button style="background:white;color:#0091EA;border-color:#0091EA;border-width: 2px;border-style: solid;" margin-right ion-fab (click)="ngvButtonEvent('1B')" >1B</button>
-    <button  style="background:white;color:#00C853;border-color:#00C853;border-width: 2px;border-style: solid;" margin-right ion-fab (click)="ngvButtonEvent('2')" >2</button>
-    <button style="background:white;color:#FF6D00;border-color:#FF6D00;border-width: 2px;border-style: solid;" margin-right ion-fab (click)="ngvButtonEvent('3')" >3</button>
-    <button style="background:white;color:#C6FF00;border-color:#C6FF00;border-width: 2px;border-style: solid;"  ion-fab margin-right (click)="ngvButtonEvent('4')" >4</button>
+  <ion-row style="width: 416px ;margin-right:auto;margin-left:auto;margin-bottom:8px;margin-top:8px;"  nowrap>
+
+    <button style="background:white;" ion-fab  ><ion-icon style="color:black" name="md-bus"> </ion-icon></button>
+    <button [style.color]="color1A" [style.background]="background1A" [style.border-color]="borderColor1A" style="border-width: 2px;border-style: solid;" margin-right  ion-fab (click)="ngvButtonEvent('1A')">1A</button>
+
+    <button [style.color]="color1B" [style.background]="background1B" [style.border-color]="borderColor1B" style="border-width: 2px;border-style: solid;" margin-right ion-fab (click)="ngvButtonEvent('1B')" >1B</button>
+
+    <button [style.color]="color2" [style.background]="background2" [style.border-color]="borderColor2" style="border-width: 2px;border-style: solid;" margin-right ion-fab (click)="ngvButtonEvent('2')" >2</button>
+
+    <button [style.color]="color3" [style.background]="background3" [style.border-color]="borderColor3" style="border-width: 2px;border-style: solid;" margin-right ion-fab (click)="ngvButtonEvent('3')" >3</button>
+
+    <button [style.color]="color4" [style.background]="background4" [style.border-color]="borderColor4" style="border-width: 2px;border-style: solid;"  ion-fab margin-right (click)="ngvButtonEvent('4')" >4</button>
+
   </ion-row >
  </ion-scroll> 
 

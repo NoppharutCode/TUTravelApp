@@ -30,19 +30,50 @@ export class HomePage {
   drawPathNgv3: any;
   drawPathNgv4: any;
 
-  /*
-      let drawPathNgv1A = new google.maps.Polyline({
-      path: this.pathNgv1A,
-      geodesic: true,
-      strokeColor: '#FF0000',
-      strokeOpacity: 1.0,
-      strokeWeight: 2
-    });
+  color1A: string;
+  background1A: string;
+  borderColor1A: string;
 
-    //drawPathNgv1A.setMap(this.map);
-  */
+  color1B: string;
+  background1B: string;
+  borderColor1B: string;
+
+  color2: string;
+  background2: string;
+  borderColor2: string;
+
+  color3: string;
+  background3: string;
+  borderColor3: string;
+
+  color4: string;
+  background4: string;
+  borderColor4: string;
+
 
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController) {
+
+    this.color1A = '#6200EA';
+    this.background1A = 'white';
+    this.borderColor1A = '#6200EA';
+
+    this.color1B = '#0091EA';
+    this.background1B = 'white';
+    this.borderColor1B = '#0091EA';
+
+    this.color2 = '#00C853';
+    this.background2 = 'white';
+    this.borderColor2 = '#00C853';
+
+    this.color3 = '#FF6D00';
+    this.background3 = 'white';
+    this.borderColor3 = '#FF6D00'; 
+
+    this.color4 = '#263238';
+    this.background4 = 'white';
+    this.borderColor4 = '#263238';
+
+
     this.places = [
       { 
         name : "อาคารโดมบริหาร" , 
@@ -486,7 +517,7 @@ export class HomePage {
     this.drawPathNgv4 = new google.maps.Polyline({
       path: this.pathNgv4,
       geodesic: true,
-      strokeColor: '#C6FF00',
+      strokeColor: '#263238',
       strokeOpacity: 1.0,
       strokeWeight: 2
     });
@@ -513,13 +544,83 @@ export class HomePage {
     //console.log(this.autocompletePlaces);
   }
 
-  choosePlace(item:any){
 
+  clear(){
+    if(this.marker){
+      this.marker.setMap(null);
+      this.marker = null;  
+    }
     this.drawPathNgv1A.setMap(null);
     this.drawPathNgv1B.setMap(null);
     this.drawPathNgv2.setMap(null);
     this.drawPathNgv3.setMap(null);
     this.drawPathNgv4.setMap(null);
+
+    this.color1A = '#6200EA';
+    this.background1A = 'white';
+    this.borderColor1A = '#6200EA';
+
+    this.color1B = '#0091EA';
+    this.background1B = 'white';
+    this.borderColor1B = '#0091EA';
+
+
+    this.color2 = '#00C853';
+    this.background2 = 'white';
+    this.borderColor2 = '#00C853';
+
+    this.color3 = '#FF6D00';
+    this.background3 = 'white';
+    this.borderColor3 = '#FF6D00';
+
+    this.color4 = '#263238';
+    this.background4 = 'white';
+    this.borderColor4 = '#263238';  
+  }
+
+  clearAll(){
+    if(this.marker){
+      this.marker.setMap(null);
+      this.marker = null;  
+    }
+    this.drawPathNgv1A.setMap(null);
+    this.drawPathNgv1B.setMap(null);
+    this.drawPathNgv2.setMap(null);
+    this.drawPathNgv3.setMap(null);
+    this.drawPathNgv4.setMap(null);
+
+    this.color1A = '#6200EA';
+    this.background1A = 'white';
+    this.borderColor1A = '#6200EA';
+
+    this.color1B = '#0091EA';
+    this.background1B = 'white';
+    this.borderColor1B = '#0091EA';
+
+
+    this.color2 = '#00C853';
+    this.background2 = 'white';
+    this.borderColor2 = '#00C853';
+
+    this.color3 = '#FF6D00';
+    this.background3 = 'white';
+    this.borderColor3 = '#FF6D00';
+
+    this.color4 = '#263238';
+    this.background4 = 'white';
+    this.borderColor4 = '#263238';  
+
+    this.autocompletePlace = {
+      name: '',
+      position: null
+    };
+    
+    this.autocompletePlaces = [];
+  }
+
+  choosePlace(item:any){
+
+    this.clear();  
 
     this.autocompletePlace = item;
     this.autocompletePlaces = [];
@@ -533,15 +634,45 @@ export class HomePage {
     for( i  ; i < item.ngv.length ; i++){
 
       if(item.ngv[i] === '1A'){
+
         this.drawPathNgv1A.setMap(this.map);
+
+        this.color1A = 'white';
+        this.background1A = '#6200EA';
+        this.borderColor1A = '#6200EA';  
+
       }else if(item.ngv[i] === '1B'){
+
         this.drawPathNgv1B.setMap(this.map);
+
+        this.color1B = 'white';
+        this.background1B = '#0091EA';
+        this.borderColor1B = '#0091EA';
+
       }else if(item.ngv[i] === '2'){
+
         this.drawPathNgv2.setMap(this.map);
+
+        this.color2 = 'white';
+        this.background2 = '#00C853';
+        this.borderColor2 = '#00C853';
+
       }else if(item.ngv[i] === '3'){
+
         this.drawPathNgv3.setMap(this.map);
+
+        this.color3 = 'white';
+        this.background3 = '#FF6D00';
+        this.borderColor3 = '#FF6D00';
+
       }else{
+
         this.drawPathNgv4.setMap(this.map);
+
+        this.color4 = 'white';
+        this.background4 = '#263238';
+        this.borderColor4 = '#263238';
+
       }
     }
 
@@ -553,41 +684,71 @@ export class HomePage {
 
       if(this.drawPathNgv1A.getMap()){
         this.drawPathNgv1A.setMap(null);
+        this.color1A = '#6200EA';
+        this.background1A = 'white';
+        this.borderColor1A = '#6200EA';
       }else{
 
         this.drawPathNgv1A.setMap(this.map);
+        this.color1A = 'white';
+        this.background1A = '#6200EA';
+        this.borderColor1A = '#6200EA';
       }
 
     }else if(val === '1B'){
 
       if(this.drawPathNgv1B.getMap()){
         this.drawPathNgv1B.setMap(null);
+        this.color1B = '#0091EA';
+        this.background1B = 'white';
+        this.borderColor1B = '#0091EA';
       }else{
         this.drawPathNgv1B.setMap(this.map);
+        this.color1B = 'white';
+        this.background1B = '#0091EA';
+        this.borderColor1B = '#0091EA';
       }
 
     }else if(val === '2'){
 
       if(this.drawPathNgv2.getMap()){
         this.drawPathNgv2.setMap(null);
+        this.color2 = '#00C853';
+        this.background2 = 'white';
+        this.borderColor2 = '#00C853';
       }else{
         this.drawPathNgv2.setMap(this.map);
+        this.color2 = 'white';
+        this.background2 = '#00C853';
+        this.borderColor2 = '#00C853';
       }
 
     }else if(val === '3'){
 
       if(this.drawPathNgv3.getMap()){
         this.drawPathNgv3.setMap(null);
+        this.color3 = '#FF6D00';
+        this.background3 = 'white';
+        this.borderColor3 = '#FF6D00'; 
       }else{
         this.drawPathNgv3.setMap(this.map);
+        this.color3 = 'white';
+        this.background3 = '#FF6D00';
+        this.borderColor3 = '#FF6D00'; 
       }
 
     }else{
 
       if(this.drawPathNgv4.getMap()){
         this.drawPathNgv4.setMap(null);
+        this.color4 = '#263238';
+        this.background4 = 'white';
+        this.borderColor4 = '#263238';
       }else{
         this.drawPathNgv4.setMap(this.map);
+        this.color4 = 'white';
+        this.background4 = '#263238';
+        this.borderColor4 = '#263238';
       }
 
     }
