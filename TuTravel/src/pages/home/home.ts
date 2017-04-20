@@ -1,7 +1,7 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { NavController , ModalController, ViewController, LoadingController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
-
+import { StatusBar } from '@ionic-native/status-bar';
 declare var google:any;
 
 @Component({
@@ -18,7 +18,9 @@ export class HomePage {
   autocompletePlaces: any;
   map: any;
   marker: any;
-  infoWindow: any;
+  watch:  any;
+  myloc: any;
+  infowindow: any;
 
   pathNgv1A: any;
   pathNgv1B: any;
@@ -52,9 +54,11 @@ export class HomePage {
   background4: string;
   borderColor4: string;
 
+  heightMap: string;
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController , public geolocation: Geolocation) {
 
+  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController , public geolocation: Geolocation, private statusBar: StatusBar) {
+    this.statusBar.backgroundColorByHexString('#F44336');
     this.color1A = '#6200EA';
     this.background1A = 'white';
     this.borderColor1A = '#6200EA';
@@ -454,19 +458,214 @@ export class HomePage {
         positionPlace: { lat : 14.068264 , lng : 100.608743 },
         ngv : [ "4" ],
         lable : "ป้ายคณะสถาปัตย์และการผังเมือง" 
-      }     
-    ];
-
-
-/*
+      }, /* ################ second add places ##############*/
       { 
-        name : "" , 
-        positionPlace: { lat :  , lng :  },
+        name : "โซล่าร์พาร์ค(Solar Park)" , 
+        positionPlace: { lat : 14.07508 , lng : 100.604521 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "" 
+      },
+      { 
+        name : "ท่ารถตู้BTSหมอชิต/ลาดพร้าว" , 
+        positionPlace: { lat : 14.075481 , lng : 100.601544 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "" 
+      },
+      { 
+        name : "วินมอเตอร์ไซค์" , 
+        positionPlace: { lat : 14.074966 , lng : 100.601946 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "" 
+      },
+      { 
+        name : "ท่ารถตู้ฟิวเจอร์พาร์ครังสิต/อนุสาวรีย์" , 
+        positionPlace: { lat : 14.074966 , lng : 100.602241 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารเดือน บุนนาค" , 
+        positionPlace: { lat : 14.073498 , lng : 100.604124 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "" 
+      },
+      { 
+        name : "หอพักนักศึกษาหญิง" , 
+        positionPlace: { lat : 14.072304 , lng : 100.600565 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "" 
+      },
+      { 
+        name : "หอพักนักศึกษาชาย" , 
+        positionPlace: { lat : 14.073587 , lng : 100.599924 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารศูนย์ธุรกิจและบริการ" , 
+        positionPlace: { lat : 14.073964 , lng : 100.601313 },
+        ngv : [ "1A" , "1B" , "2" , "3" , "4" ],
+        lable : "" 
+      },
+      { 
+        name : "ลานพญานาค" , 
+        positionPlace: { lat : 14.068014 , lng : 100.600519 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "" 
+      },
+      { 
+        name : "สนามกีฬาหลักกลางแจ้ง" , 
+        positionPlace: { lat : 14.06799 , lng : 100.598856 },
+        ngv : [ "1A" , "1B" , "3" , "4" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารกิจกรรมนักศึกษา" , 
+        positionPlace: { lat : 14.075637 , lng : 100.600817 },
+        ngv : [ "1A" , "1B" , "2"],
+        lable : "" 
+      },
+      { 
+        name : "ศูนย์เด็กปฐมวัย" , 
+        positionPlace: { lat : 14.075702 , lng : 100.599765 },
+        ngv : [ "1A" , "1B" , "2"],
+        lable : "" 
+      },
+      { 
+        name : "โรงเรียนอนุบาลแห่งมหาวิทยาลัยธรรมศาสตร์" , 
+        positionPlace: { lat : 14.07662 , lng : 100.598068 },
+        ngv : [ "1A" , "1B" , "2"],
+        lable : "" 
+      },
+      { 
+        name : "ศูนย์ฝึกอบรมสำนักบัณฑิตอาสาสมัคร" , 
+        positionPlace: { lat : 14.078483 , lng : 100.60024 },
+        ngv : [ "1A" , "1B" , "2"],
+        lable : "" 
+      },
+      { 
+        name : "โรงอาหารคณะวิศวะ" , 
+        positionPlace: { lat : 14.069658 , lng : 100.607278 },
+        ngv : [ "1A" , "1B" , "4"],
+        lable : "" 
+      },
+      { 
+        name : "อาคารปฏิบัติการคณะศิลปกรรมศาสตร์" , 
+        positionPlace: { lat : 14.067108 , lng : 100.606758 },
+        ngv : [ "1A" , "1B" , "4"],
+        lable : "" 
+      },
+      { 
+        name : "ปั๊มน้ำมันปตท.(PTT)" , 
+        positionPlace: { lat : 14.067194 , lng : 100.606342 },
+        ngv : [ "1A" , "1B" , "4"],
+        lable : "" 
+      },
+      { 
+        name : "ประตูเชียงราก2" , 
+        positionPlace: { lat : 14.065658 , lng : 100.610044 },
+        ngv : [ "1A" , "1B" , "4"],
+        lable : "" 
+      },
+      { 
+        name : "อาคารห้องปฏิบัติการมีเดียเทรนนิ่งเซ็นเตอร์  (Media Training Center) " , 
+        positionPlace: { lat : 14.068521 , lng : 100.605184 },
+        ngv : [ "1A" , "1B"],
+        lable : "" 
+      },
+      { 
+        name : "อาคารพิพิธภัณฑ์ธรรมศาสตร์เฉลิมพระเกียรติ" , 
+        positionPlace: { lat : 14.070488 , lng : 100.60333 },
+        ngv : [ "1A" , "1B"],
+        lable : "" 
+      },
+      { 
+        name : "สถานีวิทยุกระจายเสียง" , 
+        positionPlace: { lat : 14.075111 , lng : 100.597816 },
+        ngv : [ "1A" , "1B"],
+        lable : "" 
+      },
+      { 
+        name : "สนามเทนนิส" , 
+        positionPlace: { lat : 14.069872 , lng : 100.598014 },
+        ngv : [ "1A" , "1B"],
+        lable : "" 
+      },
+      { 
+        name : "อาคารบรรยายเรียนรวม2 (บร.2)" , 
+        positionPlace: { lat : 14.073478 , lng : 100.60627 },
+        ngv : [ "2" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารยิมเนเซียม 2" , 
+        positionPlace: { lat : 14.071188 , lng : 100.608652 },
+        ngv : [ "2" ],
+        lable : "" 
+      },
+      { 
+        name : "โรงอาหารคณะวิทย์" , 
+        positionPlace: { lat : 14.072624 , lng : 100.608485 },
+        ngv : [ "2" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารกิตติวัฒนา" , 
+        positionPlace: { lat : 14.074685 , lng : 100.614531 },
+        ngv : [ "2" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารดุลโสภาคย์" , 
+        positionPlace: { lat : 14.073675 , lng : 100.614333 },
+        ngv : [ "2" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารราชสุดา (อาคารศูนย์สุขศาสตร์)" , 
+        positionPlace: { lat : 14.073363 , lng : 100.613115 },
+        ngv : [ "2" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารผู้ป่วยนอก (อาคาร มรว.สุวพรรณ สนิทวงศ์)" , 
+        positionPlace: { lat : 14.073631 , lng : 100.614958 },
+        ngv : [ "2" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารผู้ป่วยใน (อาคารปัญจา สายาลักษณ์)" , 
+        positionPlace: { lat : 14.072817 , lng : 100.614593 },
+        ngv : [ "2" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารคุณากร" , 
+        positionPlace: { lat : 14.072723 , lng : 100.613788 },
+        ngv : [ "2" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารบริการ" , 
+        positionPlace: { lat : 14.073582 , lng : 100.611886 },
+        ngv : [ "2" ],
+        lable : "" 
+      },
+      { 
+        name : "อาคารศูนย์บริการทางวิชาการ" , 
+        positionPlace: { lat : 14.067821 , lng : 100.61121 },
         ngv : [ "4" ],
         lable : "" 
       }
+    ];
+/*
+      { 
+        name : "" , 
+        positionPlace: { lat :  , lng : },
+        ngv : [ "2" ],
+        lable : "" 
+      }
 */
-
     this.autocompletePlaces = [];
     this.autocompletePlace = {
       name: '',
@@ -891,27 +1090,17 @@ export class HomePage {
  
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
  
-      this.infoWindow = new google.maps.InfoWindow();
-      this.infoWindow.setPosition(latLng);
-      this.infoWindow.setContent('คุณอยู่ตรงนี้');
-      this.infoWindow.open(this.map);
+
+      this.myloc = new google.maps.Marker({
+        map: this.map,
+        label: "คุณอยู่ตรงนี้"
+      });
+      this.myloc.setPosition(latLng);
       this.map.setCenter(latLng);
-
-    let myloc = new google.maps.Marker({
-    clickable: false,
-    icon: new google.maps.MarkerImage('//maps.gstatic.com/mapfiles/mobile/mobileimgs2.png',
-                                                    new google.maps.Size(22,22),
-                                                    new google.maps.Point(0,18),
-                                                    new google.maps.Point(11,11)),
-    shadow: null,
-    zIndex: 999,
-    map: this.map
-    });
-
-  myloc.setPosition(latLng);
     }, (err) => {
       console.log(err);
     });
+
 
 
   }
@@ -931,12 +1120,18 @@ export class HomePage {
         }
       })
     }
+    if(this.autocompletePlaces.length != 0){
+      this.heightMap = "0%";
+    }else{
+      this.heightMap = "100%";
+    }
     
     //console.log(this.autocompletePlaces);
   }
 
 
   clear(){
+    this.heightMap = "100%";
     if(this.marker){
       this.marker.setMap(null);
       this.marker = null;  
@@ -1011,6 +1206,11 @@ export class HomePage {
 
   choosePlace(item:any){
 
+
+
+    let i = 0;
+    this.heightMap = "100%";
+
     this.clear();  
 
     this.autocompletePlace = item;
@@ -1018,11 +1218,11 @@ export class HomePage {
 
     console.log(item);
     let locationMarker = new google.maps.LatLng( item.positionPlace.lat, item.positionPlace.lng );
-    this.marker = new google.maps.Marker({position: locationMarker, title: item.name});
+    this.marker = new google.maps.Marker({position: locationMarker, title: item.name, label: item.name});
     this.marker.setMap(this.map);
+    this.map.setCenter(locationMarker);
 
-    let i = 0;
-    for( i  ; i < item.ngv.length ; i++){
+    for( i = 0 ; i < item.ngv.length ; i++){
 
       if(item.ngv[i] === '1A'){
 

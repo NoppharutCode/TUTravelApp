@@ -1,22 +1,24 @@
 
 <ion-header color="primary">
     <ion-searchbar [(ngModel)]="autocompletePlace.name"  (ionClear)="clear()" (ionInput)="getPlaceFromSearch($event)" type="text" placeholder="จุดหมายปลายทาง" ></ion-searchbar >
-    <ion-list  *ngIf="autocompletePlaces.length != 0">
-    <ion-item *ngFor="let item of autocompletePlaces" tappable (click)="choosePlace(item)">
-          {{ item.name }}
-    </ion-item>
-    </ion-list>
+
+
 </ion-header>
 
-<ion-content>
-	<div #map id="map"></div>
+<ion-content >
+  <ion-list *ngIf="autocompletePlaces.length != 0">
+      <ion-item *ngFor="let item of autocompletePlaces" tappable (click)="choosePlace(item)">
+        {{ item.name }}
+      </ion-item>
+  </ion-list>
+	<div #map id="map" [style.height]="heightMap" ></div>
   <ion-fab right bottom>
-    <button ion-fab (click)="clearAll()" ><ion-icon  name="md-refresh"> </ion-icon></button>
+    <button ion-fab (click)="clearAll()"  *ngIf="autocompletePlaces.length == 0" ><ion-icon  name="md-refresh"> </ion-icon></button>
   </ion-fab>
 </ion-content>
 
-<ion-footer>
-<ion-scroll scrollX="true" style="height:72px" fab-center>
+<ion-footer *ngIf="autocompletePlaces.length == 0">
+<ion-scroll scrollX="true" style="height:72px" fab-center >
   <ion-row style="width: 416px ;margin-right:auto;margin-left:auto;margin-bottom:8px;margin-top:8px;"  nowrap>
   
     <ion-icon name="md-bus" style="font-size: 56px;" margin-right margin-left > </ion-icon>
